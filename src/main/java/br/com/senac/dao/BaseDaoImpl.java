@@ -12,22 +12,22 @@ import org.hibernate.*;
  * @param <T> representa qualquer calsse entidade
  * @param <ID> representa o tipo do id
  */
-public abstract class BaseDaoImpl<T, ID> implements BaseDao<T, ID> {
+public abstract class BaseDaoImpl<T, ID> implements BaseDao<T, ID> { // se a clase tem abstract ela da certeza que é uma classe pai
 
-    private Transaction transaction;
+    private Transaction transacao;
 
     @Override
     public void salvarOuAlterar(T entidade, Session sessao) throws HibernateException {
-        transaction = sessao.beginTransaction();
+        transacao = sessao.beginTransaction();
         sessao.saveOrUpdate(entidade);
-        transaction.commit();
+        transacao.commit();
     }
 
     @Override
     public void Excluir(T entidade, Session sessao) throws HibernateException {
-        transaction = sessao.beginTransaction();
+        transacao = sessao.beginTransaction();
         sessao.delete(entidade);
-        transaction.commit();
+        transacao.commit();
     }
 
 }
